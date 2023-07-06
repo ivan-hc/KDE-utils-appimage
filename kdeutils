@@ -32,15 +32,24 @@ ingredients:
     - deb http://deb.debian.org/debian stable-backports main contrib non-free
   packages:
     - kdeutils
+    - kde-cli-tools
     - bzip2
     - p7zip-full
+    - p7zip-rar
+    - p7zip
     - unar
     - unzip
     - zip
     - rar
     - unrar
     - unrar-free
-    - libkf5configcore5" >> recipe.yml;
+    - libkf5configcore5
+    - libkf5wallet-bin
+    - libkf5wallet5
+    - libkwalletbackend5-5
+    - qml-module-org-kde-quickcharts
+    - qml-module-org-kde-kirigami2
+    - qml-module-qtquick2" >> recipe.yml;
 
 cp /opt/$APP/tmp/recipe.yml /opt/$APP/recipe.yml
 
@@ -63,32 +72,49 @@ export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:"${HERE}"/u
 export LD_LIBRARY_PATH=/lib/:/lib64/:/usr/lib/x86_64-linux-gnu/:/usr/lib/i386-linux-gnu/:"${HERE}"/usr/lib/:"${HERE}"/usr/lib/i386-linux-gnu/:"${HERE}"/usr/lib/x86_64-linux-gnu/:"${HERE}"/lib/:"${HERE}"/lib/i386-linux-gnu/:"${HERE}"/lib/x86_64-linux-gnu/:"${LD_LIBRARY_PATH}"
 export PYTHONPATH="${HERE}"/usr/share/pyshared/:"${PYTHONPATH}"
 export PYTHONHOME="${HERE}"/usr/
-export XDG_DATA_DIRS="${HERE}"/usr/share/:"${XDG_DATA_DIRS}"
+export XDG_DATA_DIRS="${HERE}"/usr/share/:"${HERE}"/usr/share/kxmlgui5/:"${XDG_DATA_DIRS}"
 export PERLLIB="${HERE}"/usr/share/perl5/:"${HERE}"/usr/lib/perl5/:"${PERLLIB}"
 export GSETTINGS_SCHEMA_DIR="${HERE}"/usr/share/glib-2.0/schemas/:"${GSETTINGS_SCHEMA_DIR}"
-export QT_PLUGIN_PATH="${HERE}"/usr/lib/qt4/plugins/:"${HERE}"/usr/lib/i386-linux-gnu/qt4/plugins/:"${HERE}"/usr/lib/x86_64-linux-gnu/qt4/plugins/:"${HERE}"/usr/lib32/qt4/plugins/:"${HERE}"/usr/lib64/qt4/plugins/:"${HERE}"/usr/lib/qt5/plugins/:"${HERE}"/usr/lib/i386-linux-gnu/qt5/plugins/:"${HERE}"/usr/lib/x86_64-linux-gnu/qt5/plugins/:"${HERE}"/usr/lib32/qt5/plugins/:"${HERE}"/usr/lib64/qt5/plugins/:"${QT_PLUGIN_PATH}"
+export QT_PLUGIN_PATH="${HERE}"/usr/lib/qt*/plugins/:"${HERE}"/usr/lib/i386-linux-gnu/qt*/plugins/:"${HERE}"/usr/lib/x86_64-linux-gnu/qt*/plugins/:"${HERE}"/usr/lib32/qt*/plugins/:"${HERE}"/usr/lib64/qt*/plugins/:"${QT_PLUGIN_PATH}"
+export QT_QPA_PLATFORMTHEME=$QT_QPA_PLATFORMTHEME
+export QT_FONT_DPI=96
 case $1 in
-ark|filelight|kcalc|kcharselect|kdf|kgpg|ktimer|kwalletmanager5|sweeper) if test -f "${HERE}"/usr/bin/$1; then
-cd "${HERE}"/usr/share/kxmlgui5
-EXEC=$(grep -e '^Exec=.*' "${HERE}"/usr/share/applications/org.kde.$1.desktop | head -n 1 | cut -d "=" -f 2- | sed -e 's|%.||g')
-exec ${EXEC} "$@" 2>/dev/null
-exit
-else
-echo "
- AVAILABLE KDE UTILITIES:
-
- - ark
- - filelight
- - kcalc
- - kcharselect
- - kdf
- - kgpg
- - ktimer
- - kwalletmanager5
- - sweeper
-
-"
-fi;;
+ark) case $2 in
+	'') "${HERE}"/usr/bin/$1;;
+	*) "${HERE}"/usr/bin/$1 "$@";;
+esac;;
+filelight) case $2 in
+	'') "${HERE}"/usr/bin/$1;;
+	*) "${HERE}"/usr/bin/$1 "$@";;
+esac;;
+kcalc) case $2 in
+	'') "${HERE}"/usr/bin/$1;;
+	*) "${HERE}"/usr/bin/$1 "$@";;
+esac;;
+kcharselect) case $2 in
+	'') "${HERE}"/usr/bin/$1;;
+	*) "${HERE}"/usr/bin/$1 "$@";;
+esac;;
+kdf) case $2 in
+	'') "${HERE}"/usr/bin/$1;;
+	*) "${HERE}"/usr/bin/$1 "$@";;
+esac;;
+kgpg) case $2 in
+	'') "${HERE}"/usr/bin/$1;;
+	*) "${HERE}"/usr/bin/$1 "$@";;
+esac;;
+ktimer) case $2 in
+	'') "${HERE}"/usr/bin/$1;;
+	*) "${HERE}"/usr/bin/$1 "$@";;
+esac;;
+kwalletmanager5) case $2 in
+	'') "${HERE}"/usr/bin/$1;;
+	*) "${HERE}"/usr/bin/$1 "$@";;
+esac;;
+sweeper) case $2 in
+	'') "${HERE}"/usr/bin/$1;;
+	*) "${HERE}"/usr/bin/$1 "$@";;
+esac;;
 -h|--help|*) echo "
 
  USAGE: kdeutils APPNAME
