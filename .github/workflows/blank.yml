@@ -24,6 +24,8 @@ jobs:
         VERSION=$(curl -s https://packages.debian.org/stable/kdeutils | grep "Package: kdeutils" | cut -c 26- | rev | cut -c 2- | rev)
         mv /opt/kdeutils/kdeutils dist/KDE_Utils_suite-$VERSION-x86_64.AppImage
     - uses: gautamkrishnar/keepalive-workflow@v1
+      with:
+        gh_token: ${{ secrets.GH_TOKEN }}
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:
