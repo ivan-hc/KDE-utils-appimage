@@ -4,8 +4,10 @@ Debian Stable's suite of KDE utilities in one AppImage.
 This repository provides the script to create and install the latest version of the KDE Utilities suite from Debian Stable, and an AppImage ready to be used.
 
 ## Usage
-    chmod a+x ./kdeutils $APPNAME
-    
+```
+chmod a+x ./kdeutils
+./kdeutils $APPNAME
+```    
 Where `$APPNAME` is one between `ark`, `filelight`, `kcalc`, `kcharselect`, `kdf`, `kgpg`, `ktimer`, `kwalletmanager5` or `sweeper`
 
 ---------------------------------
