@@ -1,12 +1,38 @@
-# KDE-utils-appimage
-Debian Stable's suite of KDE utilities in one AppImage.
+This is an unofficial AppImage that bundles the following KDE utilities from Arch Linux using JuNest!
 
-This repository provides the script to create and install the latest version of the KDE Utilities suite from Debian Stable, and an AppImage ready to be used.
+```
+	ark
+	filelight
+	francis
+	isoimagewriter
+	kalm
+	kate
+	kbackup
+	kcalc
+	kcharselect
+	kclock
+	kdebugsettings
+	kdf
+	kdialog
+	keditbookmarks
+	keysmith
+	kfind
+	kgpg
+	kongress
+	krecorder
+	kteatime
+	ktimer
+	ktrip
+	kweather
+	kwrite
+	skanpage
+	sweeper
+	telly-skout
+```
 
 ## Usage
 ```
-chmod a+x ./kdeutils
-./kdeutils $APPNAME
+./*.AppImage name-of-the-game-from-the-list-above
 ```    
 Where `$APPNAME` is one between `ark`, `filelight`, `kcalc`, `kcharselect`, `kdf`, `kgpg`, `ktimer`, `kwalletmanager5` or `sweeper`
 
