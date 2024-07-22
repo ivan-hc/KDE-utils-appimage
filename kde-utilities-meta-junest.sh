@@ -3,9 +3,13 @@
 # NAME OF THE APP BY REPLACING "SAMPLE"
 APP=kde-utilities-meta
 BIN="$APP" #CHANGE THIS IF THE NAME OF THE BINARY IS DIFFERENT FROM "$APP" (for example, the binary of "obs-studio" is "obs")
-DEPENDENCES="ca-certificates ark filelight francis isoimagewriter kalk kalm kate kbackup kcalc kcharselect kclock kdebugsettings kdf kdialog keditbookmarks keysmith kfind kgpg kongress krecorder kteatime ktimer ktrip kweather skanpage sweeper telly-skout \
-kirigami kvantum \
-arj lrzip lzop p7zip unarchiver unrar "
+DEPENDENCES="ca-certificates ark filelight francis isoimagewriter kalm kate kbackup kcalc kcharselect kclock kdebugsettings kdf kdialog keditbookmarks keysmith kfind kgpg kongress krecorder kteatime ktimer ktrip kweather skanpage sweeper telly-skout \
+kirigami kvantum qt5ct qt6ct \
+arj lrzip lzop p7zip unarchiver unrar \
+karchive kcoreaddons kcrash ki18n kiconthemes kwidgetsaddons solid \
+kcmutils kcompletion kconfig kconfigwidgets ki18n kio kjobwidgets kstatusnotifieritem kxmlgui \
+kcodecs kcontacts kdbusaddons kservice ktextwidgets libakonadi \
+alsa-libs alsa-utils kpipewire pipewire pulseaudio pulseaudio-alsa"
 #BASICSTUFF="binutils debugedit gzip"
 #COMPILERS="base-devel"
 
@@ -204,7 +208,6 @@ function _create_AppRun() {
 	    filelight
 	    francis
 	    isoimagewriter
-	    kalk
 	    kalm
 	    kate
 	    kbackup
@@ -224,11 +227,12 @@ function _create_AppRun() {
 	    ktimer
 	    ktrip
 	    kweather
+	    kwrite
 	    skanpage
 	    sweeper
 	    telly-skout
 	";;
-	ark|filelight|francis|isoimagewriter|kalk|kalm|kate|kbackup|kcalc|kcharselect|kclock|kdebugsettings|kdf|kdialog|keditbookmarks|keysmith|kfind|kgpg|kongress|krecorder|kteatime|ktimer|ktrip|kweather|skanpage|sweeper|telly-skout) 
+	ark|filelight|francis|isoimagewriter|kalm|kate|kbackup|kcalc|kcharselect|kclock|kdebugsettings|kdf|kdialog|keditbookmarks|keysmith|kfind|kgpg|kongress|krecorder|kteatime|ktimer|ktrip|kweather|kwrite|skanpage|sweeper|telly-skout) 
 	$HERE/.local/share/junest/bin/junest -n -b "$BINDS" -- "$@"
 	;;
 	*)
@@ -342,7 +346,7 @@ echo " EXTRACTING DEPENDENCES"
 echo "-----------------------------------------------------------"
 echo ""
 _extract_main_package
-#_extract_all_dependences
+_extract_all_dependences
 
 # SAVE ESSENTIAL FILES AND LIBRARIES
 echo ""
@@ -352,9 +356,9 @@ echo "-----------------------------------------------------------"
 echo ""
 
 # SAVE FILES USING KEYWORDS
-BINSAVED="certificates SAVEBINSPLEASE" # Enter here keywords to find and save in /usr/bin
-SHARESAVED="certificates SAVESHAREPLEASE" # Enter here keywords or file/directory names to save in both /usr/share and /usr/lib
-LIBSAVED="pk p11 alsa jack pipewire pulse SAVELIBSPLEASE" # Enter here keywords or file/directory names to save in /usr/lib
+BINSAVED="certificates json k q Q gpg png svg" # Enter here keywords to find and save in /usr/bin
+SHARESAVED="certificates k q" # Enter here keywords or file/directory names to save in both /usr/share and /usr/lib
+LIBSAVED="pk p11 alsa jack pipewire pulse json Json k q Q png Png svg Svg gpg" # Enter here keywords or file/directory names to save in /usr/lib
 
 # Save files in /usr/bin
 function _savebins() {
@@ -488,9 +492,9 @@ function _saveshare() {
  	rmdir save
 }
 
-#_savebins 2> /dev/null
-#_savelibs
-#_saveshare 2> /dev/null
+_savebins 2> /dev/null
+_savelibs
+_saveshare 2> /dev/null
 
 # ASSEMBLING THE APPIMAGE PACKAGE
 function _rsync_main_package() {
@@ -524,8 +528,8 @@ function _enable_mountpoints_for_the_inbuilt_bubblewrap() {
 	mkdir -p ./"$APP".AppDir/.junest/run/user
 }
 
-#_rsync_main_package
-#_rsync_dependences
+_rsync_main_package
+_rsync_dependences
 _remove_more_bloatwares
 _enable_mountpoints_for_the_inbuilt_bubblewrap
 
