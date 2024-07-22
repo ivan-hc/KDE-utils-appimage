@@ -3,8 +3,9 @@
 # NAME OF THE APP BY REPLACING "SAMPLE"
 APP=kde-utilities-meta
 BIN="$APP" #CHANGE THIS IF THE NAME OF THE BINARY IS DIFFERENT FROM "$APP" (for example, the binary of "obs-studio" is "obs")
-DEPENDENCES="ca-certificates ark filelight francis isoimagewriter kalk kalm kate kbackup kcalc kcharselect kclock kdebugsettings kdf kdialog keditbookmarks keysmith kfind kgpg kongress konsole krecorder kteatime ktimer ktrip kwalletmanager kweather markdownpart skanpage sweeper telly-skout yakuake \
-libselinux kirigami"
+DEPENDENCES="ca-certificates ark filelight francis isoimagewriter kalk kalm kate kbackup kcalc kcharselect kclock kdebugsettings kdf kdialog keditbookmarks keysmith kfind kgpg kongress krecorder kteatime ktimer ktrip kweather skanpage sweeper telly-skout \
+kirigami kvantum \
+arj lrzip lzop p7zip unarchiver unrar "
 #BASICSTUFF="binutils debugedit gzip"
 #COMPILERS="base-devel"
 
@@ -185,11 +186,7 @@ function _create_AppRun() {
 
 	BINDS=" $ETC_RESOLV $MNT_MEDIA_DIR $MNT_DIR $OPT_DIR $USR_LIB_LOCALE_DIR $USR_SHARE_FONTS_DIR $USR_SHARE_THEMES_DIR "
 
-	if test -f $JUNEST_HOME/usr/lib/libselinux.so; then
-		export PATH=/usr/bin/:/usr/sbin/:/usr/games/:/bin/:/sbin/:"${PATH}"
-		export LD_LIBRARY_PATH=/lib/:/lib64/:/lib/x86_64-linux-gnu/:/usr/lib/:"${LD_LIBRARY_PATH}"
-		export XDG_DATA_DIRS=/usr/share/:"${XDG_DATA_DIRS}"
-	fi
+	#if test -f $JUNEST_HOME/usr/lib/libselinux.so; then export LD_LIBRARY_PATH=/lib/:/lib64/:/lib/x86_64-linux-gnu/:/usr/lib/:"${LD_LIBRARY_PATH}"; fi
 
 	case $1 in
 	'')
@@ -222,20 +219,16 @@ function _create_AppRun() {
 	    kfind
 	    kgpg
 	    kongress
-	    konsole
 	    krecorder
 	    kteatime
 	    ktimer
 	    ktrip
-	    kwalletmanager
 	    kweather
-	    markdownpart
 	    skanpage
 	    sweeper
 	    telly-skout
-	    yakuake
 	";;
-	ark|filelight|francis|isoimagewriter|kalk|kalm|kate|kbackup|kcalc|kcharselect|kclock|kdebugsettings|kdf|kdialog|keditbookmarks|keysmith|kfind|kgpg|kongress|konsole|krecorder|kteatime|ktimer|ktrip|kwalletmanager|kweather|markdownpart|skanpage|sweeper|telly-skout|yakuake) 
+	ark|filelight|francis|isoimagewriter|kalk|kalm|kate|kbackup|kcalc|kcharselect|kclock|kdebugsettings|kdf|kdialog|keditbookmarks|keysmith|kfind|kgpg|kongress|krecorder|kteatime|ktimer|ktrip|kweather|skanpage|sweeper|telly-skout) 
 	$HERE/.local/share/junest/bin/junest -n -b "$BINDS" -- "$@"
 	;;
 	*)
@@ -349,7 +342,7 @@ echo " EXTRACTING DEPENDENCES"
 echo "-----------------------------------------------------------"
 echo ""
 _extract_main_package
-_extract_all_dependences
+#_extract_all_dependences
 
 # SAVE ESSENTIAL FILES AND LIBRARIES
 echo ""
@@ -495,9 +488,9 @@ function _saveshare() {
  	rmdir save
 }
 
-_savebins 2> /dev/null
-_savelibs
-_saveshare 2> /dev/null
+#_savebins 2> /dev/null
+#_savelibs
+#_saveshare 2> /dev/null
 
 # ASSEMBLING THE APPIMAGE PACKAGE
 function _rsync_main_package() {
@@ -518,6 +511,8 @@ function _remove_more_bloatwares() {
 	rm -R -f ./"$APP".AppDir/.junest/home # remove the inbuilt home
 	rm -R -f ./"$APP".AppDir/.junest/usr/lib/python*/__pycache__/* # if python is installed, removing this directory can save several megabytes
 	#rm -R -f ./"$APP".AppDir/.junest/usr/lib/libLLVM-* # included in the compilation phase, can sometimes be excluded for daily use
+	rm -R -f ./"$APP".AppDir/.junest/usr/include/*
+	rm -R -f ./"$APP".AppDir/.junest/var/*
 }
 
 function _enable_mountpoints_for_the_inbuilt_bubblewrap() {
@@ -529,8 +524,8 @@ function _enable_mountpoints_for_the_inbuilt_bubblewrap() {
 	mkdir -p ./"$APP".AppDir/.junest/run/user
 }
 
-_rsync_main_package
-_rsync_dependences
+#_rsync_main_package
+#_rsync_dependences
 _remove_more_bloatwares
 _enable_mountpoints_for_the_inbuilt_bubblewrap
 
