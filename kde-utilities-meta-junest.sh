@@ -15,7 +15,7 @@ alsa-libs alsa-utils kpipewire pipewire pulseaudio pulseaudio-alsa"
 
 # CREATE AND ENTER THE APPDIR
 if ! test -f ./appimagetool; then
-	wget -q "$(wget -q https://api.github.com/repos/probonopd/go-appimage/releases -O - | sed 's/"/ /g; s/ /\n/g' | grep -o 'https.*continuous.*tool.*86_64.*mage$')" -O appimagetool
+	wget -q https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage -O appimagetool
 	chmod a+x appimagetool
 fi
 mkdir -p "$APP".AppDir && cd "$APP".AppDir || exit 1
@@ -266,7 +266,6 @@ _set_locale
 _add_launcher_and_icon
 _create_AppRun
 _made_JuNest_a_potable_app
-_remove_some_bloatwares
 
 cd .. || exit 1 # EXIT THE APPDIR
 
@@ -512,6 +511,7 @@ function _rsync_dependences() {
 }
 
 function _remove_more_bloatwares() {
+	_remove_some_bloatwares
 	rm -R -f ./"$APP".AppDir/.junest/home # remove the inbuilt home
 	rm -R -f ./"$APP".AppDir/.junest/usr/lib/python*/__pycache__/* # if python is installed, removing this directory can save several megabytes
 	#rm -R -f ./"$APP".AppDir/.junest/usr/lib/libLLVM-* # included in the compilation phase, can sometimes be excluded for daily use
@@ -537,5 +537,5 @@ _enable_mountpoints_for_the_inbuilt_bubblewrap
 if test -f ./*.AppImage; then
 	rm -R -f ./*archimage*.AppImage
 fi
-ARCH=x86_64 VERSION=$(./appimagetool -v | grep -o '[[:digit:]]*') ./appimagetool -s ./"$APP".AppDir
+ARCH=x86_64 ./appimagetool --comp zstd --mksquashfs-opt -Xcompression-level --mksquashfs-opt 20 ./$APP.AppDir
 mv ./*AppImage ./KDE-UTILS-SUITE_"$VERSION"-archimage3.4.4-x86_64.AppImage
