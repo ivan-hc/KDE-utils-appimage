@@ -540,5 +540,6 @@ _enable_mountpoints_for_the_inbuilt_bubblewrap
 if test -f ./*.AppImage; then
 	rm -R -f ./*archimage*.AppImage
 fi
-ARCH=x86_64 ./appimagetool --comp zstd --mksquashfs-opt -Xcompression-level --mksquashfs-opt 20 ./$APP.AppDir
-mv ./*AppImage ./KDE-UTILS-SUITE_"$VERSION"-archimage3.4.4-x86_64.AppImage
+ARCH=x86_64 ./appimagetool --comp zstd --mksquashfs-opt -Xcompression-level --mksquashfs-opt 20 \
+	-u "gh-releases-zsync|$GITHUB_REPOSITORY_OWNER|KDE-utils-appimage|continuous|*x86_64.AppImage.zsync" \
+	./"$APP".AppDir KDE-UTILS-SUITE_"$VERSION"-archimage3.4.4-x86_64.AppImage
