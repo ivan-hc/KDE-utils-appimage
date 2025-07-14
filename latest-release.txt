@@ -1,2 +1,2 @@
 https://github.com/ivan-hc/KDE-utils-appimage/releases/download/continuous/KDE-utils_25.04-1-archimage4.3-x86_64.AppImage
-Sun Jul 13 02:05:51 UTC 2025
+Mon Jul 14 02:01:09 UTC 2025
