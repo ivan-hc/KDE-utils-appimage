@@ -32,9 +32,9 @@ This is an unofficial AppImage that bundles the following KDE utilities from Arc
 
 ## Usage
 ```
-./*.AppImage name-of-the-game-from-the-list-above
+./*.AppImage $APPNAME
 ```    
-Where `$APPNAME` is one between `ark`, `filelight`, `kcalc`, `kcharselect`, `kdf`, `kgpg`, `ktimer`, `kwalletmanager5` or `sweeper`
+Where `$APPNAME` is one between `ark`, `filelight`, `kcalc`, `kcharselect`, `kdf`, `kgpg`, `ktimer`, `sweeper` or any other item listed above.
 
 ------------------------------------------------------------------------
 
