@@ -29,6 +29,8 @@ This is an unofficial AppImage that bundles the following KDE utilities from Arc
 	telly-skout
 ```
 
+Since Nov 24, 2025, `filelight` has a dedicated AppImage https://github.com/pkgforge-dev/filelight-AppImage
+
 ## Usage
 ```
 ./*.AppImage $APPNAME
