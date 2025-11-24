@@ -3,7 +3,7 @@
 APP=kde-utilities-meta
 BIN="$APP" #CHANGE THIS IF THE NAME OF THE BINARY IS DIFFERENT FROM "$APP" (for example, the binary of "obs-studio" is "obs")
 qtv="6"
-kde_meta="ark filelight francis isoimagewriter kalm kate kbackup kcalc kcharselect kclock \
+kde_meta="ark francis isoimagewriter kalm kate kbackup kcalc kcharselect kclock \
 kdebugsettings kdf kdialog keditbookmarks keysmith kfind kgpg kongress krecorder kteatime \
 ktimer ktrip kweather skanpage sweeper telly-skout"
 DEPENDENCES=$(echo "$kde_meta alsa-lib libpulse pipewire arj dbus lrzip lzop p7zip unarchiver unrar \
@@ -131,7 +131,6 @@ echo "
  AVAILABLE KDE UTILITIES:
 
     ark
-    filelight
     francis
     isoimagewriter
     kalm
@@ -158,7 +157,7 @@ echo "
     sweeper
     telly-skout
 ";;
-ark|filelight|francis|isoimagewriter|kalm|kate|kbackup|kcalc|kcharselect|kclock|kdebugsettings|kdf|kdialog|keditbookmarks|keysmith|kfind|kgpg|kongress|krecorder|kteatime|ktimer|ktrip|kweather|kwrite|skanpage|sweeper|telly-skout)
+ark|francis|isoimagewriter|kalm|kate|kbackup|kcalc|kcharselect|kclock|kdebugsettings|kdf|kdialog|keditbookmarks|keysmith|kfind|kgpg|kongress|krecorder|kteatime|ktimer|ktrip|kweather|kwrite|skanpage|sweeper|telly-skout)
 _JUNEST_CMD -- /usr/bin/"$@"
 ;;
 *)
