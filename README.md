@@ -2,7 +2,6 @@ This is an unofficial AppImage that bundles the following KDE utilities from Arc
 
 ```
 	ark
-	filelight
 	francis
 	isoimagewriter
 	kalm
@@ -34,7 +33,7 @@ This is an unofficial AppImage that bundles the following KDE utilities from Arc
 ```
 ./*.AppImage $APPNAME
 ```    
-Where `$APPNAME` is one between `ark`, `filelight`, `kcalc`, `kcharselect`, `kdf`, `kgpg`, `ktimer`, `sweeper` or any other item listed above.
+Where `$APPNAME` is one between `ark`, `kcalc`, `kcharselect`, `kdf`, `kgpg`, `ktimer`, `sweeper` or any other item listed above.
 
 ------------------------------------------------------------------------
 
